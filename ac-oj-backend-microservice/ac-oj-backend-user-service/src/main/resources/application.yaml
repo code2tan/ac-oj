@@ -1,0 +1,62 @@
+# 公共配置文件
+# @author TBH
+server:
+  port: 8102
+  servlet:
+    context-path: /api/user
+    # cookie 30天
+    session:
+      cookie:
+        max-age: 2592000
+        path: /api
+spring:
+  application:
+    name: AC-OJ-BACKEND-USER-SERVICE
+  cloud:
+    nacos:
+      discovery:
+        server-addr: www.ghost-ubuntu.org:8848
+        group: AC-OJ
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  servlet:
+    multipart:
+      # 大小限制
+      max-file-size: 10MB
+  # session 配置
+  session:
+    store-type: redis
+    # 30 天过期
+    timeout: 2592000
+  # 数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://sh-cynosdbmysql-grp-qj8okh6g.sql.tencentcdb.com:20180/acoj
+    username: DevelopUser
+    password: DevelopUser@123
+  # Redis 配置
+  redis:
+    cluster:
+      nodes:
+        - www.ghost-ubuntu.org:7001
+        - www.ghost-ubuntu.org:7002
+        - www.ghost-ubuntu.org:7003
+        - www.ghost-ubuntu.org:7004
+        - www.ghost-ubuntu.org:7005
+        - www.ghost-ubuntu.org:7006
+    timeout: 5000
+    password: 123456
+    database: 1
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: isDelete # 全局逻辑删除的实体字段名
+      logic-delete-value: 1 # 逻辑已删除值（默认为 1）
+      logic-not-delete-value: 0 # 逻辑未删除值（默认为 0）
+
+knife4j:
+  enable: true

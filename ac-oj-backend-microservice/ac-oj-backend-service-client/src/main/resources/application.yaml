@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: www.ghost-ubuntu.org:8848
+#        group: AC_OJ
